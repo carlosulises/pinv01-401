@@ -1,0 +1,144 @@
+{
+  "dnn": [
+    {
+      "type": "conv",
+      "value": {
+        "filters": 6,
+        "kernel_size": {
+          "width": 5,
+          "height": 5
+        },
+        "strides": {
+          "x": 1,
+          "y": 1
+        },
+        "activation": "relu"
+      }
+    },
+    {
+      "type": "max_pool",
+      "value": {
+        "pool_size": {
+          "vertical": 2,
+          "horizontal": 2
+        },
+        "strides": {
+          "x": 2,
+          "y": 2
+        }
+      }
+    },
+    {
+      "type": "conv",
+      "value": {
+        "filters": 16,
+        "kernel_size": {
+          "width": 5,
+          "height": 5
+        },
+        "strides": {
+          "x": 1,
+          "y": 1
+        },
+        "activation": "relu"
+      }
+    },
+    {
+      "type": "max_pool",
+      "value": {
+        "pool_size": {
+          "vertical": 2,
+          "horizontal": 2
+        },
+        "strides": {
+          "x": 2,
+          "y": 2
+        }
+      }
+    },
+    {
+      "type": "flat",
+      "value": {
+        "data_format": null
+      }
+    },
+    {
+      "type": "fc",
+      "value": {
+        "units": 120,
+        "activation": "relu"
+      }
+    },
+    {
+      "type": "fc",
+      "value": {
+        "units": 84,
+        "activation": "relu"
+      }
+    },
+    {
+      "type": "fc",
+      "value": {
+        "units": 1,
+        "activation": "sigmoid"
+      }
+    }
+  ],
+  "execution": {
+    "batch_size": 30,
+    "epochs": 10,
+    "interval": 2,
+    "amount": 1,
+    "method": "parallel",
+    "catch_type": "layerings",
+    "weights": "different"
+  },
+  "optimizer": {
+    "optimizer": "adam",
+    "loss": "binary_crossentropy"
+  },
+  "archives": {
+    "type": "h5",
+    "mode": "train-test",
+    "dataset": null,
+    "dataset_train": "datasets/cat-vs-dog/train_cat-vs-dog.hdf5",
+    "dataset_test": "datasets/cat-vs-dog/test_cat-vs-dog.hdf5",
+    "attributes": {
+      "train_set_x": "train_set_x",
+      "train_set_y": "train_set_y",
+      "test_set_x": "test_set_x",
+      "test_set_y": "test_set_y",
+      "list_classes": "list_classes",
+      "cant_input": 64
+    }
+  },
+  "result": {
+    "type": "unique",
+    "summary": "summarized",
+    "ylim": {
+      "start": 30,
+      "end": 120
+    }
+  },
+  "metricEnable": false,
+  "metric": [
+    {
+      "lot": 2,
+      "quantity": 20,
+      "module": "svm_sklearn",
+      "epoch_measure": "less",
+      "lot_measure": "prom",
+      "parameters": {
+        "epochs": 10,
+        "max_iter": 70000000,
+        "bias": -1,
+        "eta": 1,
+        "C": 1,
+        "batch": 62
+      }
+    }
+  ],
+  "analyze": true,
+  "layeringOptimization": true,
+  "resetWeightBias": true
+}
